@@ -250,7 +250,7 @@ async function submitOnline(){
  if(quizScore===null){alert('Please check the QAR Quiz before submitting.');showStep(3);return;}
  const data=allData(),box=document.getElementById('onlineFeedback');box.classList.remove('hidden');box.textContent='Submitting your work...';
  try{
-  try {
+   
   const response = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -264,7 +264,9 @@ async function submitOnline(){
   } else {
     box.innerHTML = '<b>Submission failed:</b> ' + (result.message || 'Unknown error');
   }
- }catch(e){box.innerHTML='<b>Submission failed.</b> Check your internet connection and the URL, then try again or download a CSV copy.';}
+} catch (e) {
+  box.innerHTML = '<b>Submission failed.</b> Check your internet connection and the URL, then try again or download a CSV copy.';
+}
 }
 function downloadReport(){
  const d=allData(),rows=[['English XI — Interactive Recount Worksheet'],['Student Name',d.studentName],['Class',d.studentClass],['Date',d.studentDate],[],['Part','Field','Response']];
